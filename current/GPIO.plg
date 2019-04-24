@@ -3,7 +3,15 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-D:\programy\keil\projects\current\GPIO.uvproj
-Project File Date:  03/24/2019
+C:\Users\student\Desktop\mtm_ppsw\current\GPIO.uvproj
+Project File Date:  04/24/2019
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+main.c(39): warning:  #111-D: statement is unreachable
+main.c(41): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=1288 RO-data=32 RW-data=4 ZI-data=1260  
+FromELF: creating hex file...
+".\GPIO.axf" - 0 Errors, 2 Warning(s).
