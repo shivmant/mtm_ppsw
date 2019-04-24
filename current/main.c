@@ -1,4 +1,3 @@
-#include <LPC21xx.H>
 #include "led.h"
 #include "keyboard.h"
 
@@ -14,28 +13,37 @@ void Delay(unsigned int uiTimeInMs)
 	}
 }
 
+enum LedState {LED_LEFT,LED_RIGHT};
+enum LedState eLedState = LED_LEFT;
+unsigned char counter;
+
 int main()
 {
-
 	LedInit();
 	ButtonInit();
 	
 	while(1)
 	{
-		switch(eKeyboardRead())
+		switch(eLedState)
 		{
-			case BUTTON_1:
-				LedStepRight();
+			case LED_LEFT:
+				for(counter=0;counter<3;counter++)
+				{
+					LedStepLeft();
+					Delay(500);
+				}
+				eLedState = LED_RIGHT;
 				break;
-			case BUTTON_2:
-				LedStepLeft();
-				break;
-			case RELASED:
+			case LED_RIGHT:
+				for(counter=0;counter<3;counter++)
+				{
+					LedStepRight();
+					Delay(500);
+				}
+				eLedState = LED_LEFT;
 				break;
 			default:{}
 		}
-		Delay(500);
 	}
 	return 1;
 }
-//git test
