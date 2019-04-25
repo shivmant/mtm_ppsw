@@ -14,8 +14,8 @@ void Delay(unsigned int uiTimeInMs)
 }
 
 enum LedState {LED_RIGHT,NO_MOVE};
-enum LedState eLedState = NO_MOVE;
-unsigned char StepCounter;
+enum LedState eLedState = LED_RIGHT;
+//unsigned char StepCounter;
 
 int main()
 {
@@ -27,21 +27,19 @@ int main()
 		switch(eLedState)
 		{
 			case LED_RIGHT:
-				if(StepCounter<=3)
+				if(eKeyboardRead()==BUTTON_0)
 				{
-					StepCounter++;
-					LedStepRight();
+					eLedState = NO_MOVE;
 				}
 				else
 				{
-					eLedState = NO_MOVE;
+					LedStepRight();
 				}
 				break;
 			case NO_MOVE:
 				if(eKeyboardRead()==BUTTON_1)
 				{
 					eLedState = LED_RIGHT;
-					StepCounter = 0;
 				}
 				break;
 			default:{}

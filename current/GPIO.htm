@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\GPIO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\GPIO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu Apr 25 10:30:08 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu Apr 25 10:36:41 2019
 <BR><P>
 <H3>Maximum Stack Usage =          8 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -182,11 +182,11 @@ Global Symbols
 
 <P><STRONG><a name="[45]"></a>Delay</STRONG> (ARM, 44 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 
-<P><STRONG><a name="[a]"></a>main</STRONG> (ARM, 160 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[a]"></a>main</STRONG> (ARM, 128 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = main &rArr; LedStepRight &rArr; LedStep
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eKeyboardRead
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStepRight
+<BR>[Calls]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eKeyboardRead
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStepRight
 <LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedInit
 <LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ButtonInit
 </UL>
@@ -206,14 +206,14 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedOn
 </UL>
 <BR>[Called By]<UL><LI><a href="#[20]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStepLeft
-<LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStepRight
+<LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStepRight
 </UL>
 
 <P><STRONG><a name="[20]"></a>LedStepLeft</STRONG> (ARM, 20 bytes, Stack size 4 bytes, led.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStep
 </UL>
 
-<P><STRONG><a name="[1c]"></a>LedStepRight</STRONG> (ARM, 20 bytes, Stack size 4 bytes, led.o(.text))
+<P><STRONG><a name="[1d]"></a>LedStepRight</STRONG> (ARM, 20 bytes, Stack size 4 bytes, led.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LedStepRight &rArr; LedStep
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LedStep
@@ -225,7 +225,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1d]"></a>eKeyboardRead</STRONG> (ARM, 104 bytes, Stack size 0 bytes, keyboard.o(.text))
+<P><STRONG><a name="[1c]"></a>eKeyboardRead</STRONG> (ARM, 104 bytes, Stack size 0 bytes, keyboard.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
