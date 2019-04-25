@@ -2,12 +2,13 @@
 #include "keyboard.h"
 
 #define BUTTON0_bm (1<<4)
-#define BUTTON1_bm (1<<6)
-#define BUTTON2_bm (1<<5)
+#define BUTTON1_bm (1<<5)
+#define BUTTON2_bm (1<<6)
 #define BUTTON3_bm (1<<7)
 
 void ButtonInit()
 {
+	
 	IO0DIR=IO0DIR&(~(BUTTON0_bm|BUTTON1_bm|BUTTON2_bm|BUTTON3_bm));
 }
 

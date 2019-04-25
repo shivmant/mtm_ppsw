@@ -12,5 +12,6 @@ void InitTimer0(void)
 void WaitOnTimer0(unsigned int uiTime)
 {
 	T0TCR=T0TCR|COUNTER_RESET;
+	T0TCR&=~COUNTER_RESET;
 	while((uiTime)>T0TC){}
 }
