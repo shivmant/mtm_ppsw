@@ -16,21 +16,30 @@ void LedInit()
 
 void LedOn(unsigned char ucLedIndeks)
 {
+	
 	IO1CLR = LED0_bm|LED1_bm|LED2_bm|LED3_bm;
 	switch(ucLedIndeks)
 	{
 		case 0:
+		
 			IO1SET = LED0_bm;
 			break;
+		
 		case 1:
+		
 			IO1SET = LED1_bm;
 			break;
+		
 		case 2:
+		
 			IO1SET = LED2_bm;
 			break;
+		
 		case 3:
+		
 			IO1SET = LED3_bm;
 			break;
+		
 		default:
 			break;
 	}
@@ -38,6 +47,7 @@ void LedOn(unsigned char ucLedIndeks)
 
 void LedStep(enum StepDirection enDirection)
 {
+	
 	static unsigned int uiLedLight;
 	
 	if(enDirection == LEFT)

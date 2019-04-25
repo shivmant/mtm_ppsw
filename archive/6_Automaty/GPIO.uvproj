@@ -412,11 +412,6 @@
               <FileType>1</FileType>
               <FilePath>.\keyboard.c</FilePath>
             </File>
-            <File>
-              <FileName>timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\timer.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

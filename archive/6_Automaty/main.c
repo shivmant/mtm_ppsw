@@ -1,6 +1,5 @@
 #include "led.h"
 #include "keyboard.h"
-#include "timer.h"
 
 void Delay(unsigned int uiTimeInMs)
 {
@@ -24,21 +23,7 @@ int main()
 	
 	while(1)
 	{
-		switch(eKeyboardRead())
-		{
-			case BUTTON_1:
-				LedStepRight();
-				break;
-			case BUTTON_2:
-				LedStepLeft();
-				break;
-			case RELASED:
-				break;
-			default:{}
-		}
-		Delay(500);
-	}
-		/*switch(eLedState)
+		switch(eLedState)
 		{
 			case LED_LEFT:
 				if(eKeyboardRead()==BUTTON_1)
@@ -73,5 +58,5 @@ int main()
 			default:{}
 		}
 		Delay(100);
-	}*/
+	}
 }
