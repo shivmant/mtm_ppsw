@@ -1,4 +1,3 @@
-#include <LPC21xx.H>
 #include <stdio.h>
 #include <stdlib.h>
 #define NULL 0
@@ -37,7 +36,7 @@ enum Result Testof_CopyString()
 {
 	char pcTestSource[] = "Test1";
 	char pcTestDestination[6];
-	
+	//test1 sprawdza czy funkcja dobrze kopiuje stringi
 	CopyString(pcTestSource,pcTestDestination);
 	if(eCompareString(pcTestSource,pcTestDestination)==EQUAL)
 	{
@@ -53,7 +52,7 @@ enum Result Testof_eCompareString()
 {
 	char pcTest1[] = "Test1";
 	char pcTest2[] = "Test2";
-	
+	//test2 sprawdza czy funkcja dobrze porównuje stringi
 	if((eCompareString(pcTest1,pcTest2)==EQUAL)||(eCompareString(pcTest1,pcTest1)==DIFFERENT))
 	{
 		return ERROR;
@@ -77,7 +76,7 @@ enum Result Testof_AppendString()
 	char pcTestSource[] = "1";
 	char pcTestDestination[] = "Test";
 	char pcTestResult[] = "Test1";
-	
+	//test3 sprawdza czy funkcja dobrze dopisuje stringi
 	AppendString(pcTestSource,pcTestDestination);
 	if(eCompareString(pcTestDestination,pcTestResult)==EQUAL)
 	{
@@ -106,7 +105,7 @@ enum Result Testof_ReplaceCharactersInString()
 {
 	char pcTest[] = "Test1";
 	char pcTestResult[] = "Test2";
-	
+	//test4 sprawdza czy funkcja dobrze zamienia znaki w stringach
 	ReplaceCharactersInString(pcTest,'1','2');
 	if(eCompareString(pcTest,pcTestResult)==EQUAL)
 	{
@@ -149,7 +148,7 @@ enum Result Testof_UIntToHexStr()
 	unsigned int uiTestValue = 60;
 	char pcTestDestination[6];
 	char pcTestResult[] = "0x003C";
-	
+	//test5 sprawdza czy funkcja dobrze zamienia zmienna typu int na hex
 	UIntToHexStr(uiTestValue, pcTestDestination);
 	if(eCompareString(pcTestDestination,pcTestResult)==EQUAL)
 	{
@@ -197,7 +196,7 @@ enum Result Testof_eHexStringToUInt()
 {
 	char pcTestString[] = "0x003C";
 	unsigned int uiTestDestination;
-	
+	//test6 sprawdza czy funkcja dobrze zamienia zmienna typu hex na int
 	eHexStringToUInt(pcTestString, &uiTestDestination);
 	if(uiTestDestination == 60)
 	{
@@ -222,7 +221,7 @@ enum Result Testof_AppendUIntToString()
 	char pcTestString[10] = "Test";
 	unsigned int uiTestValue = 60;
 	char pcTestResult[] = "Test0x003C";
-	
+	//test7 sprawdza czy funkcja dobrze dodaje hex do stringa
 	AppendUIntToString(uiTestValue, pcTestString);
 	if(eCompareString(pcTestString,pcTestResult)==EQUAL)
 	{
@@ -323,7 +322,7 @@ enum Result Testof_ucFindTokensInString()
 	char test1[] = "        ";
 	char test2[] = " token1 token2";
 	char test3[] = "token1   token2";
-	
+	//test8 sprawdza czy funkcja dobrze wyszukuje tokeny w komunikatach
 	if((ucFindTokensInString(test1)==0)&&(ucFindTokensInString(test2)==2)&&(ucFindTokensInString(test3)==2))
 	{
 		return OK;
@@ -353,6 +352,7 @@ enum Result Testof_eStringToKeyword()
 {
 	char test[] = "reset";
 	enum KeywordCode eTestKeywordCode;
+	//test9 sprawdza czy funkcja dobrze zamienia stringi na kody slow kluczowych
 	eStringToKeyword(test, &eTestKeywordCode);
 	if(eTestKeywordCode == RST)
 	{
@@ -387,7 +387,7 @@ void DecodeTokens(void)
       else
       {
 				pasValue->eType = STRING;
-				//pasValue->uValue.pcString = pcStr;
+				//pasValue->uValue.pcString = pcStr[];
       }
   }
 }
@@ -395,7 +395,7 @@ void DecodeTokens(void)
 enum Result Testof_DecodeTokens()
 {
 	char pcTestMsg1[]="load 0x3C token1";
-	
+	//test10 sprawdza czy funkcja dobrze dekoduje tokeny
 	ucTokenNr=ucFindTokensInString(pcTestMsg1);
 	ReplaceCharactersInString(pcTestMsg1,' ',NULL);
   DecodeTokens();
@@ -424,7 +424,7 @@ void DecodeMsg(char *pcString)
 enum Result Testof_DecodeMsg()
 {
 	char pcTestMsg1[]="load 0x3C token1";
-	
+	//test11 sprawdza czy funkcja dobrze dekoduje komunikaty
 	DecodeMsg(pcTestMsg1);
 	if((asToken[0].eType != KEYWORD)||(asToken[0].uValue.eKeyword != LD))
 	{
@@ -459,6 +459,7 @@ int main()
 	TestResult = Testof_AppendUIntToString();
 	TestResult = Testof_ucFindTokensInString();
 	TestResult = Testof_eStringToKeyword();
-	TestResult = Testof_DecodeTokens();*/
+	TestResult = Testof_DecodeTokens();
+	Testof_DecodeMsg();(*/
 	//return 0;
 }

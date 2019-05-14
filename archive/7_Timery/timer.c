@@ -17,13 +17,13 @@ void WaitOnTimer0(unsigned int uiTime)
 {
 	T0TCR=T0TCR|COUNTER_RESET;
 	T0TCR=T0TCR&~COUNTER_RESET;
-	while(uiTime>T0TC){}
+	while(uiTime*15>T0TC){}
 }
 
 void InitTimer0Match0(unsigned int uiDelayTime)
 {
 	T0TCR=T0TCR|COUNTER_ENABLE;
-	T0MR0=uiDelayTime*4;
+	T0MR0=uiDelayTime*15;
 	T0MCR=T0MCR|RESET_ON_MR0;
 	T0MCR=T0MCR|INTERRUPT_ON_MR0;
 }
