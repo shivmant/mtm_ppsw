@@ -24,6 +24,8 @@ int main()
 	while(1)
 	{
 		LedStepLeft();
+		LedStepLeft();
+		LedStepLeft();
 		WaitONTimer0Match0();
 		//WaitOnTimer0(1000000);
 	}
