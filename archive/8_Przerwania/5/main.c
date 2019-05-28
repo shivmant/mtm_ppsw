@@ -1,31 +1,10 @@
-#include <LPC21xx.H>
 #include "led.h"
 #include "keyboard.h"
 #include "timer.h"
 #include "timer_interrupts.h"
 
-#define DETECTOTOR_bm (1<<10)
-
-void DetectorInit()
-{
-	IO0DIR=IO0DIR&(~DETECTOTOR_bm);
-}
-
-enum DetectorState {ACTIVE,INACTIVE,CALLIB};
-
-enum DetectorState eReadDetector()
-{
-	if((IO0PIN & DETECTOTOR_bm) == 0)
-	{
-		return ACTIVE;
-	}
-	else
-	{
-		return INACTIVE;
-	}
-}
-
 enum LedState {LED_LEFT,LED_RIGHT,LED_STOP};
+//enum LedState eLedState = LED_STOP;
 
 void Automat()
 {
