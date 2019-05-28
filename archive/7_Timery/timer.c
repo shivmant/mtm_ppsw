@@ -16,8 +16,8 @@ void InitTimer0(void)
 void WaitOnTimer0(unsigned int uiTime)
 {
 	T0TCR=T0TCR|COUNTER_RESET;					//resetujemy timer
-	T0TCR=T0TCR&~COUNTER_RESET;					//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc dalej	
-	while(uiTime*15>T0TC){}							//petla wykonujaca sie dopóki timer nie wyrówna sie z czasem podanym w argumencie funkcji
+	T0TCR=T0TCR&~COUNTER_RESET;					//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc od nowa	
+	while((uiTime*15)!=T0TC){}							//petla wykonujaca sie dopóki timer nie osiagnie czasu podanego w argumencie funkcji
 }
 
 void InitTimer0Match0(unsigned int uiDelayTime)
@@ -30,8 +30,8 @@ void InitTimer0Match0(unsigned int uiDelayTime)
 
 void WaitONTimer0Match0(void)
 {
-	T0IR=T0IR|MR0_INTERRUPT_FLAG;				//ustawiamy w rejestrze przerwan bit przerwania przy MR0 (po ustaweniu 1 nastepuje reset i stan 0)
-	T0TCR=T0TCR|COUNTER_RESET;					//resetujemy time
-	T0TCR=T0TCR&~COUNTER_RESET;					//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc dalej	
-	while(T0IR==0){}										//petla wykonujaca sie dopóki nie nastapi przerwanie przy zrownaniu MR0 z timerem (przy przerwaniu 1)
+	T0IR=T0IR|MR0_INTERRUPT_FLAG;				//resetujemy flage przerwania
+	T0TCR=T0TCR|COUNTER_RESET;					//resetujemy timer
+	T0TCR=T0TCR&~COUNTER_RESET;					//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc od nowa
+	while(T0IR==0){}										//petla wykonujaca sie dopóki nie nastapi przerwanie przy zrownaniu MR0 z timerem (przy przerwaniu zapala sie flaga przerwania)
 }
