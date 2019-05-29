@@ -88,50 +88,6 @@ void Automat()
 	}
 }
 
-void ServoInit(unsigned int uiServoFrequency)
-{
-	
-	LedInit();
-	Timer0Interrupts_Init(50000, &Automat);
-}
-
-void ServoCallib(void)
-{
-	enum DetectorState eDetectorState;
-	
-	switch(eDetectorState)
-	{
-		case ACTIVE:
-			
-			break;
-		case INACTIVE:
-			eDetectorState=CALLIB;
-			break;
-		case CALLIB:
-			LedStepLeft();
-			eDetectorState=eReadDetector();
-			break;
-	}
-}
-
-void ServoGoTo(unsigned int uiPosition)
-{
-	uiPosition;
-	while(sServo.uiCurrentPosition == sServo.uiDesiredPosition)
-	{
-		if(sServo.uiCurrentPosition > sServo.uiDesiredPosition)
-		{
-			sServo.uiCurrentPosition--;
-			LedStepRight();
-		}
-		else if(sServo.uiCurrentPosition < sServo.uiDesiredPosition)
-		{
-			sServo.uiCurrentPosition++;
-			LedStepLeft();
-		}
-	}
-}
-
 int main ()
 {
 	unsigned int iMainLoopCtr;

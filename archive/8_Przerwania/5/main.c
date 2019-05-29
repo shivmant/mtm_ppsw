@@ -4,7 +4,6 @@
 #include "timer_interrupts.h"
 
 enum LedState {LED_LEFT,LED_RIGHT,LED_STOP};
-//enum LedState eLedState = LED_STOP;
 
 void Automat()
 {
@@ -49,7 +48,8 @@ int main ()
 {
 	unsigned int iMainLoopCtr;
 	
-	Timer0Interrupts_Init(250000, &Automat);
+	//Timer0Interrupts_Init(250000, &Automat);
+	Timer1Interrupts_Init(250000, &Automat);
 	LedInit();
 	ButtonInit();
 
