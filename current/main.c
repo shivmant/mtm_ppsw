@@ -1,53 +1,46 @@
-#include "led.h"
-#include "keyboard.h"
-#include "timer.h"
-#include "timer_interrupts.h"
+//#include "led.h"
+//#include "keyboard.h"
+//#include "timer.h"
+//#include "timer_interrupts.h"
 #include "servo.h"
 #include "uart.h"
+#include "string.h"
+#include "command_decoder.h"
 #include <LPC21xx.H>
+
+#define TERMINATOR 0x0D
+#define RECIEVER_SIZE 10
+#define NULL 0
 
 int main ()
 {
 	extern char cOdebranyZnak;
-	unsigned char currentPosition;
-	ServoInit(50);
+	extern struct RecieverBuffer sRecieverBuffer;
+	char komunikat[RECIEVER_SIZE];
+	enum KeywordCode enUARTcode;
+	char zmienna;
+	
+	//ServoInit(50);
 	UART_InitWithInt(9600);
 	while(1)
 	{
-		switch(cOdebranyZnak)
+		if(eReciever_GetStatus()==READY)
 		{
-			case '1':
-				currentPosition++;
-				ServoGoTo(12*currentPosition);
-				currentPosition=0;
-				break;
-			case '2':
-				ServoGoTo(24);
-				break;
-			case '3':
-				ServoGoTo(36);
-				break;
-			case 'c':
-				currentPosition=0;
-				ServoCallib();
-				break;
-		}
-		switch(eKeyboardRead())
-		{
-			case BUTTON_0:
-				ServoCallib();
-				break;
-			case BUTTON_1:
-				ServoGoTo(12);
-				break;
-			case BUTTON_2:
-				ServoGoTo(24);
-				break;
-			case BUTTON_3:
-				ServoGoTo(36);
-				break;
-			case RELASED:
-				break;
+			Reciever_GetStringCopy(komunikat);
+			eStringToKeyword(komunikat, &enUARTcode);
+			switch(enUARTcode)
+			{
+				case CLB:
+					//ServoCallib();
+					zmienna='u';
+					break;
+				case LFT:
+					ServoGoTo(50);
+					break;
+				case RGT:
+					ServoGoTo(150);
+					break;
+			}
 		}
 	}
 }

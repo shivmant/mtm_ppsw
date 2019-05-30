@@ -1,5 +1,6 @@
 #include <LPC210X.H>
 #include "uart.h"
+#include "string.h"
 
 /************ UART ************/
 // U0LCR Line Control Register
@@ -38,7 +39,8 @@ __irq void UART0_Interrupt (void) {
 
    if      ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mRX_DATA_AVALIABLE_INTERRUPT_PENDING) // odebrano znak
    {
-      cOdebranyZnak = U0RBR;
+			cOdebranyZnak = U0RBR;
+			Reciever_PutCharacterToBuffer(cOdebranyZnak);
    } 
    
    if ((uiCopyOfU0IIR & mINTERRUPT_PENDING_IDETIFICATION_BITFIELD) == mTHRE_INTERRUPT_PENDING)              // wyslano znak - nadajnik pusty 
@@ -64,4 +66,49 @@ void UART_InitWithInt(unsigned int uiBaudRate)
    VICVectCntl2  = mIRQ_SLOT_ENABLE | VIC_UART0_CHANNEL_NR;     // use it for UART 0 Interrupt
    VICIntEnable |= (0x1 << VIC_UART0_CHANNEL_NR);               // Enable UART 0 Interrupt Channel
 }
+
+/*******************/
+#define TERMINATOR 0x0D
+#define RECIEVER_SIZE 10
+#define NULL 0
+
+struct RecieverBuffer
+{
+char cData[RECIEVER_SIZE];						//przechowywanie lancucha znakowego
+unsigned char ucCharCtr;							//iteracja po lancuchu
+enum eRecieverStatus eStatus;					//status bufora
+};
+
+struct RecieverBuffer sRecieverBuffer;
+
+void Reciever_PutCharacterToBuffer(char cCharacter)
+{
+	if(sRecieverBuffer.ucCharCtr >= RECIEVER_SIZE)
+	{
+		sRecieverBuffer.eStatus=OVERFLOW;
+	}
+	else if(cCharacter != TERMINATOR)
+	{
+		sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr]=cCharacter;
+		sRecieverBuffer.ucCharCtr++;
+	}
+	else
+	{
+		sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr]=NULL;
+		sRecieverBuffer.eStatus=READY;
+		sRecieverBuffer.ucCharCtr=0;
+	}
+}
+
+enum eRecieverStatus eReciever_GetStatus(void)
+{
+	return sRecieverBuffer.eStatus;
+}
+
+void Reciever_GetStringCopy(char * ucDestination)
+{
+	CopyString(sRecieverBuffer.cData, ucDestination);
+	sRecieverBuffer.eStatus=EMPTY;
+}
+
 

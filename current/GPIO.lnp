@@ -7,6 +7,8 @@
 ".\timer_interrupts.o"
 ".\servo.o"
 ".\uart.o"
+".\string.o"
+".\command_decoder.o"
 --strict --scatter ".\GPIO.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
