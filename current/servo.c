@@ -40,9 +40,10 @@ void Automat()
 			{
 				LedStepRight();
 			}
-			sServo.uiCurrentPosition=0;
-			sServo.uiDesiredPosition=0;
+			else
+			{
 			sServo.eState=IDLE;
+			}
 			break;
 		case IDLE:
 			if(sServo.uiCurrentPosition != sServo.uiDesiredPosition)
@@ -82,9 +83,14 @@ void ServoInit(unsigned int uiServoFrequency)
 void ServoCallib()
 {
 	sServo.eState = CALLIB;
+	sServo.uiCurrentPosition=0;
+	sServo.uiDesiredPosition=0;
+	while(sServo.eState!=IDLE){}
 }
 
 void ServoGoTo(unsigned int uiPosition)
 {
 	sServo.uiDesiredPosition=uiPosition;
+	sServo.eState=IN_PROGRESS;
+	while(sServo.eState!=IDLE){}
 }

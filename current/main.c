@@ -10,7 +10,7 @@ int main ()
 {
 	extern char cOdebranyZnak;
 	unsigned char currentPosition;
-	ServoInit(5);
+	ServoInit(50);
 	UART_InitWithInt(9600);
 	while(1)
 	{
@@ -18,13 +18,14 @@ int main ()
 		{
 			case '1':
 				currentPosition++;
-				ServoGoTo(50*currentPosition);
+				ServoGoTo(12*currentPosition);
+				currentPosition=0;
 				break;
 			case '2':
-				ServoGoTo(100);
+				ServoGoTo(24);
 				break;
 			case '3':
-				ServoGoTo(150);
+				ServoGoTo(36);
 				break;
 			case 'c':
 				currentPosition=0;

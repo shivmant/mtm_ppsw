@@ -7,7 +7,10 @@
 
 int main ()
 {
-	ServoInit(5);
+	ServoInit(50);
+	ServoGoTo(24);
+	ServoCallib();
+	ServoGoTo(12);
 
 	while(1)
 	{

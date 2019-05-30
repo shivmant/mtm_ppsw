@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\GPIO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\GPIO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 30 11:41:27 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Thu May 30 13:40:05 2019
 <BR><P>
 <H3>Maximum Stack Usage =         24 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -184,7 +184,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 256 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[b]"></a>main</STRONG> (ARM, 260 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16 + Unknown Stack Size
 <LI>Call Chain = main &rArr; ServoInit
 </UL>
@@ -259,7 +259,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Automat
 </UL>
 
-<P><STRONG><a name="[26]"></a>Automat</STRONG> (ARM, 292 bytes, Stack size 8 bytes, servo.o(.text))
+<P><STRONG><a name="[26]"></a>Automat</STRONG> (ARM, 284 bytes, Stack size 8 bytes, servo.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Automat &rArr; LedStepRight &rArr; LedStep
 </UL>
 <BR>[Calls]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eReadDetector
@@ -268,7 +268,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> servo.o(.text)
 </UL>
-<P><STRONG><a name="[1e]"></a>ServoCallib</STRONG> (ARM, 16 bytes, Stack size 0 bytes, servo.o(.text))
+<P><STRONG><a name="[1e]"></a>ServoCallib</STRONG> (ARM, 44 bytes, Stack size 0 bytes, servo.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ServoInit
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -286,7 +286,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1d]"></a>ServoGoTo</STRONG> (ARM, 12 bytes, Stack size 0 bytes, servo.o(.text))
+<P><STRONG><a name="[1d]"></a>ServoGoTo</STRONG> (ARM, 44 bytes, Stack size 0 bytes, servo.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
