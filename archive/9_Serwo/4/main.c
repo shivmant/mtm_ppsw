@@ -3,34 +3,14 @@
 #include "timer.h"
 #include "timer_interrupts.h"
 #include "servo.h"
-#include "uart.h"
-#include <LPC21xx.H>
+
 
 int main ()
 {
-	extern char cOdebranyZnak;
-	unsigned char currentPosition;
 	ServoInit(5);
-	UART_InitWithInt(9600);
+
 	while(1)
 	{
-		switch(cOdebranyZnak)
-		{
-			case '1':
-				currentPosition++;
-				ServoGoTo(50*currentPosition);
-				break;
-			case '2':
-				ServoGoTo(100);
-				break;
-			case '3':
-				ServoGoTo(150);
-				break;
-			case 'c':
-				currentPosition=0;
-				ServoCallib();
-				break;
-		}
 		switch(eKeyboardRead())
 		{
 			case BUTTON_0:
