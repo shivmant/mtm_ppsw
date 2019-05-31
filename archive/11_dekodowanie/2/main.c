@@ -12,38 +12,36 @@
 #define RECIEVER_SIZE 10
 #define NULL 0
 
-
 char komunikat[RECIEVER_SIZE];
-extern unsigned char ucTokenNr;
-extern struct Token asToken[MAX_TOKEN_NR];
+enum KeywordCode enUARTcode;
+char zmienna;
 
 int main ()
 {
 	extern char cOdebranyZnak;
 	extern struct RecieverBuffer sRecieverBuffer;
 	
-	//ServoInit(50);
+	ServoInit(50);
 	UART_InitWithInt(9600);
 	while(1)
 	{
 		if(eReciever_GetStatus()==READY)
 		{
 			Reciever_GetStringCopy(komunikat);
-			DecodeMsg(komunikat);
-			if((ucTokenNr > 0)&&(asToken[0].eType == KEYWORD))
+			eStringToKeyword(komunikat, &enUARTcode);
+			switch(enUARTcode)
 			{
-				switch(asToken[0].uValue.eKeyword)
-				{
-					case CLB:
-						ServoCallib();
-						break;
-					case GOTO:
-						if(asToken[1].eType == NUMBER)
-						{
-							ServoGoTo(asToken[1].uValue.uiNumber);
-						}
-						break;
-				}
+				case CLB:
+					ServoCallib();
+					break;
+				case LFT:
+					ServoGoTo(32);
+					break;
+				case RGT:
+					ServoGoTo(12);
+					break;
+				default:
+					break;
 			}
 		}
 	}

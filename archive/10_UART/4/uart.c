@@ -57,7 +57,7 @@ void UART_InitWithInt(unsigned int uiBaudRate)
    U0LCR  |= m8BIT_UART_WORD_LENGTH | mDIVISOR_LATCH_ACCES_BIT; // długosc słowa, DLAB = 1
    U0DLL   = ((15000000/16)/uiBaudRate);                      // predkosc transmisji
    U0LCR  &= (~mDIVISOR_LATCH_ACCES_BIT);                       // DLAB = 0
-   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE;               // wlaczamy przerwanie przy odebraniu znaku
+   U0IER  |= mRX_DATA_AVALIABLE_INTERRUPT_ENABLE;               // wlaczamy zrodlo przerwania przy odebraniu znaku
 
    // INT
    VICVectAddr2  = (unsigned long) UART0_Interrupt;             // set interrupt service routine address

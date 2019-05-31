@@ -19,12 +19,14 @@ int main ()
 			case '1':
 				currentPosition++;
 				ServoGoTo(12*currentPosition);
-				currentPosition=0;
+				cOdebranyZnak='\0';
 				break;
 			case '2':
+				currentPosition=2;
 				ServoGoTo(24);
 				break;
 			case '3':
+				currentPosition=3;
 				ServoGoTo(36);
 				break;
 			case 'c':

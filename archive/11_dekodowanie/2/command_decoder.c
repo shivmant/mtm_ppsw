@@ -3,15 +3,39 @@
 
 #define NULL 0
 
+union TokenValue
+{
+	enum KeywordCode eKeyword; // jezeli KEYWORD
+	unsigned int uiNumber; // jezeli NUMBER
+  char *pcString; // jezeli STRING
+};
+
+struct Token
+{
+  enum TokenType eType; // KEYWORD, NUMBER, STRING
+  union TokenValue uValue; // enum, unsigned int, char*
+};
+
+#define MAX_TOKEN_NR 3
+struct Token asToken[MAX_TOKEN_NR];
+
+#define MAX_KEYWORD_STRING_LTH 10
+
+struct Keyword
+{
+  enum KeywordCode eCode;
+  char cString[MAX_KEYWORD_STRING_LTH + 1];
+};
+
+unsigned char ucTokenNr;
+
+#define MAX_KEYWORD_NR 3
 struct Keyword asKeywordList[MAX_KEYWORD_NR]=
 {
   {CLB,"callib"},
-  {GOTO, "goto"}
+  {LFT, "left"  },
+  {RGT, "right" }
 };
-
-struct Token asToken[MAX_TOKEN_NR];
-
-unsigned char ucTokenNr;
 
 unsigned char ucFindTokensInString(char *pcString)
 {
