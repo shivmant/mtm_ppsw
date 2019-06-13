@@ -1,0 +1,36 @@
+#include <LPC21xx.H>
+#include "timer.h"
+
+#define COUNTER_ENABLE (1<<0)
+#define COUNTER_RESET (1<<1)
+#define MR0_INTERRUPT_FLAG (1<<0)
+#define INTERRUPT_ON_MR0 (1<<0)
+#define RESET_ON_MR0 (1<<1)
+
+void InitTimer0(void)
+{
+	T0TCR=T0TCR|COUNTER_ENABLE;						//wlaczamy timer
+}
+
+void WaitOnTimer0(unsigned int uiTime)
+{
+	T0TCR=T0TCR|COUNTER_RESET;						//resetujemy timer
+	T0TCR=T0TCR&~COUNTER_RESET;						//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc od nowa
+	while((uiTime*15)>T0TC){}							//petla wykonujaca sie dopóki timer nie osiagnie czasu podanego w argumencie funkcji
+}
+
+void InitTimer0Match0(unsigned int uiDelayTime)
+{
+	T0TCR=T0TCR|COUNTER_ENABLE;						//wlaczamy timer
+	T0MR0=uiDelayTime*15;									//ustawiamy czas do którego timer bedzie porównywany
+	T0MCR=T0MCR|RESET_ON_MR0;							//ustawiamy w rejestrze kontrolii porównan reset timera przy zrównaniu z MR0
+	T0MCR=T0MCR|INTERRUPT_ON_MR0;					//ustawiamy w rejestrze kontrolii porównan przerwanie przy zrównaniu timera z MR0
+}
+
+void WaitONTimer0Match0(void)
+{
+	T0IR=MR0_INTERRUPT_FLAG;							//resetujemy flage przerwania
+	T0TCR=T0TCR|COUNTER_RESET;						//resetujemy timer
+	T0TCR=T0TCR&~COUNTER_RESET;						//przywracamy rejestr kontroli do poprzedniego stanu, aby timer mogl liczyc od nowa
+	while(T0IR==0){}											//petla wykonujaca sie dopóki nie nastapi przerwanie przy zrónaniu MR0 z timerem (przy przerwaniu zapala sie flaga przerwania)
+}
