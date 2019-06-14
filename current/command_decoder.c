@@ -5,8 +5,9 @@
 
 struct Keyword asKeywordList[MAX_KEYWORD_NR]=
 {
-  {CLB,"callib"},
-  {GOTO, "goto"}
+  {CLB, "callib"},
+  {GOTO, "goto"},
+	{SHIFT, "shift"}
 };
 
 struct Token asToken[MAX_TOKEN_NR];

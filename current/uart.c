@@ -69,34 +69,26 @@ void UART_InitWithInt(unsigned int uiBaudRate)
 
 /*******************/
 #define TERMINATOR 0x0D
-#define RECIEVER_SIZE 10
 #define NULL 0
-
-struct RecieverBuffer
-{
-char cData[RECIEVER_SIZE];						//przechowywanie lancucha znakowego
-unsigned char ucCharCtr;							//iteracja po lancuchu
-enum eRecieverStatus eStatus;					//status bufora
-};
 
 struct RecieverBuffer sRecieverBuffer;
 
 void Reciever_PutCharacterToBuffer(char cCharacter)
 {
-	if(sRecieverBuffer.ucCharCtr >= RECIEVER_SIZE)
+	if(sRecieverBuffer.ucCharCtr == RECIEVER_SIZE)
 	{
 		sRecieverBuffer.eStatus=OVERFLOW;
 	}
-	else if(cCharacter != TERMINATOR)
-	{
-		sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr]=cCharacter;
-		sRecieverBuffer.ucCharCtr++;
-	}
-	else
+	else if(cCharacter == TERMINATOR)
 	{
 		sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr]=NULL;
 		sRecieverBuffer.eStatus=READY;
 		sRecieverBuffer.ucCharCtr=0;
+	}
+	else
+	{
+		sRecieverBuffer.cData[sRecieverBuffer.ucCharCtr]=cCharacter;
+		sRecieverBuffer.ucCharCtr++;
 	}
 }
 

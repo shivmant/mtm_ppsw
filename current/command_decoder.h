@@ -2,7 +2,7 @@
 #define MAX_KEYWORD_NR 3
 #define MAX_TOKEN_NR 3
 
-enum KeywordCode { CLB, GOTO};
+enum KeywordCode {CLB, GOTO, SHIFT};
 enum TokenType { KEYWORD, NUMBER, STRING};
 
 union TokenValue
